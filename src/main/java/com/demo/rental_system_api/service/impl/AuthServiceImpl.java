@@ -78,7 +78,7 @@ public class AuthServiceImpl implements AuthService {
                         "err.sys.account-is-not-active"
                 );
 
-            return new JwtResponse(loginRequest.getPassword(), "auth", userDetails.getUsername(), authorities.get(0));
+            return new JwtResponse("none", "auth", userDetails.getUsername(), authorities.get(0));
 
         } catch (AuthenticationException authenticationException) {
             throw new ServiceException("Username or password is invalid", "err.authorize.unauthorized");
