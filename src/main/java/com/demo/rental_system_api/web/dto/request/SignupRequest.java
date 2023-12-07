@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
@@ -15,6 +16,10 @@ public class SignupRequest {
     @Size(max = 50)
     @Email(message = "Invalid email")
     private String email;
+
+    @NotBlank
+    private String phoneNumber;
+
     @NotBlank
     @Size(min = 5, max = 40)
     private String password;

@@ -32,6 +32,10 @@ public class Account {
     @Email
     @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "phone_number", unique = true)
+    private String phoneNumber;
+
     @Column(name = "role")
     private AuthoritiesConstants role;
 

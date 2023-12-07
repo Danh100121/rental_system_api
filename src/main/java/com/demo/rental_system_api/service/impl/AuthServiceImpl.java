@@ -100,6 +100,7 @@ public class AuthServiceImpl implements AuthService {
         account.setActive(false);
         account.setActivationCode(UUID.randomUUID().toString());
         account.setRole(AuthoritiesConstants.ADMIN);
+        account.setPhoneNumber(signupRequest.getPhoneNumber());
         accountRepository.save(account);
 
         String subject = "Activation code";
@@ -215,10 +216,10 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public void smsAuthenticate(SmsSenderRequest smsSenderRequest) {
         var account = accountRepository
-                .findByUsernameOrEmail(smsSenderRequest.getUsername(), smsSenderRequest.getUsername())
+                .findByUsernameAndPhoneNumber(smsSenderRequest.getUsername(), smsSenderRequest.getPhoneNumber())
                 .orElseThrow(() -> new EntityNotFoundException(
                         Account.class.getName(),
-                        smsSenderRequest.getUsername()
+                        smsSenderRequest.getPhoneNumber()
                 ));
 
         var activeCode = generateRandomString();

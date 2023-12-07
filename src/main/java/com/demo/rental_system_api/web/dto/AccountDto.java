@@ -14,5 +14,6 @@ public class AccountDto {
     private Integer id;
     private String username;
     private String email;
+    private String phoneNumber;
     private AuthoritiesConstants role;
 }
